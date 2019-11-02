@@ -41,6 +41,14 @@ public class MouseEvent {
 		this.y = y;
 	}
 	
+	
+	/**
+	 * Default constructor
+	 */
+	public MouseEvent(){
+		
+	}
+	
 	/**
 	 * Parameterized constructor
 	 * @param mouseEvent

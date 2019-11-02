@@ -29,6 +29,13 @@ public class KeyboardEvent {
 	}
     
 	/**
+	 * Default constructor
+	 */
+	public KeyboardEvent(){
+		
+	}
+	
+	/**
 	 * Parameterized constructor
 	 * @param keyEvent
 	 * @param keyCode
