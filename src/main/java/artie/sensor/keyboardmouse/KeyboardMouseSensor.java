@@ -65,6 +65,11 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 			this.mouseMotionListener.ClearEvents();
 		}
 		
+		//If we want to write a JSON file with the data
+		if(Boolean.parseBoolean(this.configuration.get(artie.sensor.enums.ConfigurationEnum.SENSOR_FILE_REGISTRATION.toString()))){
+			this.writeDataToFile();
+		}
+		
 		return this.sensorData;
 	}
 	
@@ -73,14 +78,17 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 	 */
 	public KeyboardMouseSensor(){
 		
+		super();
 		this.SensorInformation();
 		
 		//Instantiate the configuration
-		this.configuration = new HashMap<String, String>();
-		this.configuration.put(ConfigurationEnum.KEYBOARD_LISTENER_ACTIVE.toString(), "1");
-		this.configuration.put(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString(), "1");
-		this.configuration.put(ConfigurationEnum.MOUSE_MOTION_LISTENER_ACTIVE.toString(), "1");
-		this.configuration.put(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), "1");
+		this.configuration.putIfAbsent(ConfigurationEnum.KEYBOARD_LISTENER_ACTIVE.toString(), "1");
+		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString(), "1");
+		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_MOTION_LISTENER_ACTIVE.toString(), "1");
+		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), "1");
+		
+		//Replacing the already existing configuration
+	 	this.configuration.replace(artie.sensor.enums.ConfigurationEnum.SENSOR_FILE_FILENAME.toString(), "KeyboardMouseSensor.log");
 	}
 	
 	/**
@@ -88,8 +96,8 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 	 * @param configuration
 	 */
 	public KeyboardMouseSensor(Map<String, String> configuration){
+		super(configuration);
 		this.SensorInformation();
-		this.configuration = configuration;
 	}
 	
 	@Override
