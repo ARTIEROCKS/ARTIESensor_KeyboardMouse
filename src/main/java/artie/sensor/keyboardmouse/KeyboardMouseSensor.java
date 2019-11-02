@@ -14,33 +14,38 @@ import artie.sensor.keyboardmouse.listeners.MouseWheelListener;
 public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 
 	//Listeners
-	private KeyboardListener keyboardListener;
-	private MouseListener mouseListener;
-	private MouseMotionListener mouseMotionListener;
-	private MouseWheelListener mouseWheelListener;
+	private KeyboardListener keyboardListener = new KeyboardListener();
+	private MouseListener mouseListener = new MouseListener();
+	private MouseMotionListener mouseMotionListener= new MouseMotionListener();
+	private MouseWheelListener mouseWheelListener= new MouseWheelListener();
 	
 	private boolean keyboardListenerIsActive = false;
 	private boolean mouseListenerIsActive = false;
 	private boolean mouseMotionListenerIsActive = false;
 	private boolean mouseWheelListenerIsActive = false;
 	
+	/**
+	 * About the sensor information
+	 */
+	private void SensorInformation(){
+		this.name = "Keyboard and Mouse Listener";
+		this.version = "0.0.1";
+		this.author = "Luis-Eduardo Imbernón";
+	}
 	
 	/**
 	 * Constructor
 	 */
 	public KeyboardMouseSensor(){
 		
-		//Instantiaite the configuration
+		this.SensorInformation();
+		
+		//Instantiate the configuration
 		this.configuration = new HashMap<String, String>();
 		this.configuration.put(ConfigurationEnum.KEYBOARD_LISTENER_ACTIVE.toString(), "1");
 		this.configuration.put(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString(), "1");
 		this.configuration.put(ConfigurationEnum.MOUSE_MOTION_LISTENER_ACTIVE.toString(), "1");
 		this.configuration.put(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), "1");
-		
-		this.keyboardListener = new KeyboardListener();
-		this.mouseListener = new MouseListener();
-		this.mouseMotionListener = new MouseMotionListener();
-		this.mouseWheelListener = new MouseWheelListener();
 	}
 	
 	/**
@@ -48,10 +53,7 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 	 * @param configuration
 	 */
 	public KeyboardMouseSensor(Map<String, String> configuration){
-		this.keyboardListener = new KeyboardListener();
-		this.mouseListener = new MouseListener();
-		this.mouseMotionListener = new MouseMotionListener();
-		this.mouseWheelListener = new MouseWheelListener();
+		this.SensorInformation();
 		this.configuration = configuration;
 	}
 	
