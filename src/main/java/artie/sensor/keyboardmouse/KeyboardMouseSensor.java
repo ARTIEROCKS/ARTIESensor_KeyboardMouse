@@ -8,6 +8,7 @@ import artie.sensor.keyboardmouse.enums.ConfigurationEnum;
 import artie.sensor.keyboardmouse.listeners.KeyboardListener;
 import artie.sensor.keyboardmouse.listeners.MouseListener;
 import artie.sensor.keyboardmouse.listeners.MouseMotionListener;
+import artie.sensor.keyboardmouse.listeners.MouseWheelListener;
 
 
 public class KeyboardMouseSensor extends ArtieClientSensorImpl{
@@ -16,10 +17,12 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 	private KeyboardListener keyboardListener;
 	private MouseListener mouseListener;
 	private MouseMotionListener mouseMotionListener;
+	private MouseWheelListener mouseWheelListener;
 	
 	private boolean keyboardListenerIsActive = false;
 	private boolean mouseListenerIsActive = false;
 	private boolean mouseMotionListenerIsActive = false;
+	private boolean mouseWheelListenerIsActive = false;
 	
 	
 	/**
@@ -32,9 +35,12 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		this.configuration.put(ConfigurationEnum.KEYBOARD_LISTENER_ACTIVE.toString(), "1");
 		this.configuration.put(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString(), "1");
 		this.configuration.put(ConfigurationEnum.MOUSE_MOTION_LISTENER_ACTIVE.toString(), "1");
+		this.configuration.put(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), "1");
 		
 		this.keyboardListener = new KeyboardListener();
 		this.mouseListener = new MouseListener();
+		this.mouseMotionListener = new MouseMotionListener();
+		this.mouseWheelListener = new MouseWheelListener();
 	}
 	
 	/**
@@ -45,6 +51,7 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		this.keyboardListener = new KeyboardListener();
 		this.mouseListener = new MouseListener();
 		this.mouseMotionListener = new MouseMotionListener();
+		this.mouseWheelListener = new MouseWheelListener();
 		this.configuration = configuration;
 	}
 	
@@ -65,7 +72,12 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		if(Boolean.parseBoolean(this.configuration.get(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString()))){
 			this.mouseMotionListener.RegisterNativeHook();
 			this.mouseMotionListenerIsActive = true;
-		}	
+		}
+		//If the mouse wheel listener is active by configuration
+		if(Boolean.parseBoolean(this.configuration.get(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString()))){
+			this.mouseWheelListener.RegisterNativeHook();
+			this.mouseWheelListenerIsActive = true;
+		}
 	}
 	
 	@Override
@@ -85,6 +97,11 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		if(this.mouseMotionListenerIsActive){
 			this.mouseMotionListener.UnregisterNativeHook();
 			this.mouseMotionListenerIsActive = false;
+		}
+		//If the mouse wheel listener is active
+		if(this.mouseWheelListenerIsActive){
+			this.mouseWheelListener.UnregisterNativeHook();
+			this.mouseWheelListenerIsActive = false;
 		}
 	}
 
