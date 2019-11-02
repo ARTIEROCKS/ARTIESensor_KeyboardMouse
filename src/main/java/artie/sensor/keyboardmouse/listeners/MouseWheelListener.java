@@ -62,5 +62,12 @@ public class MouseWheelListener implements NativeMouseWheelListener {
         }
         
     }
+    
+    /**
+     * Function to clear all the events and free the memory
+     */
+    public void ClearEvents(){
+    	this.mouseWheelEvents.clear();
+    }
 
 }

@@ -74,5 +74,13 @@ public class MouseListener implements NativeMouseListener {
             System.err.println(ex.getMessage());
         }
     }
+    
+    
+    /**
+     * Function to clear all the events and free the memory
+     */
+    public void ClearEvents(){
+    	this.mouseEvents.clear();
+    }
 	
 }

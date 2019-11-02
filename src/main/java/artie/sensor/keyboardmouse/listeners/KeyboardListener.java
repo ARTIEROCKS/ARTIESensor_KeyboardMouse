@@ -41,7 +41,8 @@ public class KeyboardListener implements NativeKeyListener {
 	}
 
 	@Override
-	public void nativeKeyTyped(NativeKeyEvent arg0) {	
+	public void nativeKeyTyped(NativeKeyEvent nke) {
+		//Key Typed and key pressed and released are more or less the same		
 	}
 	
 	/**
@@ -70,5 +71,12 @@ public class KeyboardListener implements NativeKeyListener {
             System.err.println("There was a problem unregistering the native hook.");
             System.err.println(ex.getMessage());
         }
+    }
+    
+    /**
+     * Function to clear all the events and free the memory
+     */
+    public void ClearEvents(){
+    	this.keyboardEvents.clear();
     }
 }

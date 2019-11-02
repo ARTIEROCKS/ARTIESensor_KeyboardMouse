@@ -1,8 +1,10 @@
 package artie.sensor.keyboardmouse;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import artie.sensor.SensorObject;
 import artie.sensor.impl.ArtieClientSensorImpl;
 import artie.sensor.keyboardmouse.enums.ConfigurationEnum;
 import artie.sensor.keyboardmouse.listeners.KeyboardListener;
@@ -31,6 +33,39 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		this.name = "Keyboard and Mouse Listener";
 		this.version = "0.0.1";
 		this.author = "Luis-Eduardo Imbernón";
+	}
+	
+	/**
+	 * Getting the sensor data from the listeners
+	 * @return
+	 */
+	public List<SensorObject> getSensorData(){
+		
+		//Cleaning all the information stored
+		this.sensorData.clear();
+		
+		//Getting the information from the keyboard listener
+		if(keyboardListenerIsActive){
+			this.keyboardListener.getKeyboardEvents().forEach(event->this.addSensorObject(event));
+			this.keyboardListener.ClearEvents();
+		}
+		//Getting the information from the mouse listener
+		if(mouseListenerIsActive){
+			this.mouseListener.getMouseEvents().forEach(event->this.addSensorObject(event));
+			this.mouseListener.ClearEvents();
+		}
+		//Getting the information from the mouse motion listener
+		if(mouseMotionListenerIsActive){
+			this.mouseMotionListener.getMouseMotionEvents().forEach(event->this.addSensorObject(event));
+			this.mouseMotionListener.ClearEvents();
+		}
+		//Getting the information from the mouse wheel listener
+		if(mouseWheelListenerIsActive){
+			this.mouseWheelListener.getMouseWheelEvents().forEach(event->this.addSensorObject(event));
+			this.mouseMotionListener.ClearEvents();
+		}
+		
+		return this.sensorData;
 	}
 	
 	/**

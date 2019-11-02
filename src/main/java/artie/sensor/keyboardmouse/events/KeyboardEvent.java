@@ -31,9 +31,7 @@ public class KeyboardEvent {
 	/**
 	 * Default constructor
 	 */
-	public KeyboardEvent(){
-		
-	}
+	public KeyboardEvent(){}
 	
 	/**
 	 * Parameterized constructor
