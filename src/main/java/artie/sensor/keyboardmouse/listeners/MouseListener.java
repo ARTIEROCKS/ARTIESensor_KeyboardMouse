@@ -8,12 +8,13 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseListener;
+import org.springframework.stereotype.Component;
 
 import artie.sensor.SensorObject;
 import artie.sensor.keyboardmouse.enums.EventEnum;
-import artie.sensor.keyboardmouse.events.KeyboardEvent;
 import artie.sensor.keyboardmouse.events.MouseEvent;
 
+@Component
 public class MouseListener implements NativeMouseListener {
 	
 	//Attributes

@@ -8,11 +8,13 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
+import org.springframework.stereotype.Component;
 
 import artie.sensor.SensorObject;
 import artie.sensor.keyboardmouse.enums.EventEnum;
 import artie.sensor.keyboardmouse.events.KeyboardEvent;
 
+@Component
 public class KeyboardListener implements NativeKeyListener {
 	
 	//Attributes
