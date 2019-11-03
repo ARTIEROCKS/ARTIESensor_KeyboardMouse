@@ -21,7 +21,7 @@ public class KeyboardMouseSensorService {
 	
 	@PostConstruct
 	public void init(){
-		this.keyboardMouseSensor.replaceConfiguration(artie.sensor.enums.ConfigurationEnum.SENSOR_FILE_REGISTRATION.toString(), "true");
+		this.keyboardMouseSensor.replaceConfiguration(artie.sensor.common.enums.ConfigurationEnum.SENSOR_FILE_REGISTRATION.toString(), "true");
 		this.keyboardMouseSensor.start();
 	}
 }

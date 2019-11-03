@@ -9,8 +9,9 @@ import org.jnativehook.NativeHookException;
 import org.jnativehook.mouse.NativeMouseWheelEvent;
 import org.jnativehook.mouse.NativeMouseWheelListener;
 import org.springframework.stereotype.Component;
-import artie.common.enums.EventEnum;
-import artie.sensor.SensorObject;
+
+import artie.sensor.common.dto.SensorObject;
+import artie.sensor.keyboardmouse.enums.EventEnum;
 import artie.sensor.keyboardmouse.events.MouseWheelEvent;
 
 @Component

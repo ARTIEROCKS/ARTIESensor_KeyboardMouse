@@ -2,9 +2,6 @@ package artie.sensor.keyboardmouse.events;
 
 import java.util.Date;
 
-import artie.common.enums.EventEnum;
-import artie.sensor.SensorObject;
-
 /**
  * @author Luis Eduardo Imbernon Cuadrado
  */

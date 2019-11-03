@@ -6,8 +6,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import artie.sensor.SensorObject;
-import artie.sensor.impl.ArtieClientSensorImpl;
+import artie.sensor.common.dto.SensorObject;
+import artie.sensor.common.services.ArtieClientSensorImpl;
 import artie.sensor.keyboardmouse.enums.ConfigurationEnum;
 import artie.sensor.keyboardmouse.listeners.KeyboardListener;
 import artie.sensor.keyboardmouse.listeners.MouseListener;
@@ -72,7 +72,7 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		}
 		
 		//If we want to write a JSON file with the data
-		if(Boolean.parseBoolean(this.configuration.get(artie.sensor.enums.ConfigurationEnum.SENSOR_FILE_REGISTRATION.toString()))){
+		if(Boolean.parseBoolean(this.configuration.get(artie.sensor.common.enums.ConfigurationEnum.SENSOR_FILE_REGISTRATION.toString()))){
 			this.writeDataToFile();
 		}
 		
@@ -94,7 +94,7 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), "true");
 		
 		//Replacing the already existing configuration
-	 	this.configuration.replace(artie.sensor.enums.ConfigurationEnum.SENSOR_FILE_FILENAME.toString(), "KeyboardMouseSensor.log");
+	 	this.configuration.replace(artie.sensor.common.enums.ConfigurationEnum.SENSOR_FILE_FILENAME.toString(), "KeyboardMouseSensor.log");
 	}
 	
 	
