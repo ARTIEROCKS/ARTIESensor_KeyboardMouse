@@ -71,7 +71,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
     /**
      * Function to clear all the events and free the memory
      */
-    public void ClearEvents(){
+    public void clearEvents(){
     	this.mouseMotionEvents.clear();
     }
 

@@ -84,12 +84,12 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		//Getting the information from the mouse motion listener
 		if(mouseMotionListenerIsActive){
 			this.mouseMotionListener.getMouseMotionEvents().forEach(event->this.addSensorObject(event));
-			this.mouseMotionListener.ClearEvents();
+			this.mouseMotionListener.clearEvents();
 		}
 		//Getting the information from the mouse wheel listener
 		if(mouseWheelListenerIsActive){
 			this.mouseWheelListener.getMouseWheelEvents().forEach(event->this.addSensorObject(event));
-			this.mouseMotionListener.ClearEvents();
+			this.mouseMotionListener.clearEvents();
 		}
 		
 		//If we want to write a JSON file with the data
