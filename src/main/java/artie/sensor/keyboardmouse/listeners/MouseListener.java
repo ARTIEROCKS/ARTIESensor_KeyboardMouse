@@ -53,7 +53,7 @@ public class MouseListener implements NativeMouseListener {
 	/**
      * Register the native hook
      */
-    public void RegisterNativeHook(){
+    public void registerNativeHook(){
         try{
             GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeMouseListener(this);
@@ -66,7 +66,7 @@ public class MouseListener implements NativeMouseListener {
     /**
      * Unregister the native hook
      */
-    public void UnregisterNativeHook(){
+    public void unregisterNativeHook(){
         try{
             GlobalScreen.removeNativeMouseListener(this);
             GlobalScreen.unregisterNativeHook();
@@ -80,7 +80,7 @@ public class MouseListener implements NativeMouseListener {
     /**
      * Function to clear all the events and free the memory
      */
-    public void ClearEvents(){
+    public void clearEvents(){
     	this.mouseEvents.clear();
     }
 	

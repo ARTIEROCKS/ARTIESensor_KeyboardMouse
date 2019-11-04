@@ -50,7 +50,7 @@ public class KeyboardListener implements NativeKeyListener {
 	/**
      * Function to register the native hook
      */
-    public void RegisterNativeHook(){
+    public void registerNativeHook(){
         
         try{
             GlobalScreen.registerNativeHook();
@@ -64,7 +64,7 @@ public class KeyboardListener implements NativeKeyListener {
     /**
      * Function to delete the listener and unregister the native hook
      */
-    public void UnregisterNativeHook(){
+    public void unregisterNativeHook(){
         
         try{
             GlobalScreen.removeNativeKeyListener(this);
@@ -78,7 +78,7 @@ public class KeyboardListener implements NativeKeyListener {
     /**
      * Function to clear all the events and free the memory
      */
-    public void ClearEvents(){
+    public void clearEvents(){
     	this.keyboardEvents.clear();
     }
 }

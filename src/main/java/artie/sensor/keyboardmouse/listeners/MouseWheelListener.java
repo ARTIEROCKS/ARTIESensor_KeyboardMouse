@@ -39,7 +39,7 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 	/**
      * Register the native hook
      */
-    public void RegisterNativeHook(){
+    public void registerNativeHook(){
         try{
             GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeMouseWheelListener(this);
@@ -53,7 +53,7 @@ public class MouseWheelListener implements NativeMouseWheelListener {
     /**
      * Unregister the native hook
      */
-    public void UnregisterNativeHook(){
+    public void unregisterNativeHook(){
      
         try{
             GlobalScreen.removeNativeMouseWheelListener(this);

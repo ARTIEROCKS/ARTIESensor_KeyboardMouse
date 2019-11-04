@@ -10,13 +10,13 @@
 	</parent>
 	<groupId>artie.sensor</groupId>
 	<artifactId>keyboardmouse</artifactId>
-	<version>0.0.1-snapshot</version>
+	<version>0.0.2-snapshot</version>
 	<name>keyboardmouse</name>
 	<description>Keyboard And Mouse sensor for artie client</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<artie.sensor.common.version>0.0.1-SNAPSHOT</artie.sensor.common.version>
+		<artie.sensor.common.version>0.0.2-SNAPSHOT</artie.sensor.common.version>
 		<jnativehook.version>2.0.3</jnativehook.version>
 	</properties>
 
