@@ -58,7 +58,7 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 	 */
 	private void sensorInformation(){
 		this.name = "Keyboard and Mouse Listener";
-		this.version = "0.0.1";
+		this.version = "0.0.2";
 		this.author = "Luis-Eduardo Imbernón";
 	}
 	
