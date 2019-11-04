@@ -45,7 +45,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 	/**
      * Register the native hook
      */
-    public void RegisterNativeHook(){
+    public void registerNativeHook(){
         try{
             GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeMouseMotionListener(this);
@@ -58,7 +58,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
     /**
      * Unregister the native hook
      */
-    public void UnregisterNativeHook(){
+    public void unregisterNativeHook(){
         try{
             GlobalScreen.removeNativeMouseMotionListener(this);
             GlobalScreen.unregisterNativeHook();
