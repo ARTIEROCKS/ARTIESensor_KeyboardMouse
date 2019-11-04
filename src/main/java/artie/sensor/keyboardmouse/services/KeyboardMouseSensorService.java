@@ -3,6 +3,7 @@ package artie.sensor.keyboardmouse.services;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,11 @@ import artie.sensor.keyboardmouse.KeyboardMouseSensor;
 
 @Service
 public class KeyboardMouseSensorService {
-
+	
 	@Autowired
 	private KeyboardMouseSensor keyboardMouseSensor;
 	
-	@Scheduled(fixedRate=1000)
+	@Scheduled(fixedRateString="${artie.sensor.keyboardmouse.rate}")
 	public void getData(){
 		this.keyboardMouseSensor.getSensorData();
 	}
