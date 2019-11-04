@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import artie.sensor.common.dto.SensorObject;
@@ -17,6 +18,26 @@ import artie.sensor.keyboardmouse.listeners.MouseWheelListener;
 @Service
 public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 
+	//Configuration
+	@Value("${artie.sensor.keyboardmouse.file.name}")
+	private String fileName;
+	
+	@Value("${artie.sensor.keyboardmouse.file.registration}")
+	private String fileRegistration;
+	
+	@Value("${artie.sensor.keyboardmouse.listener.keyboard.active}")
+	private String listenerKeyboardActive;
+	
+	@Value("${artie.sensor.keyboardmouse.listener.mouse.active}")
+	private String listenerMouseActive;
+	
+	@Value("${artie.sensor.keyboardmouse.listener.mouse-motion.active}")
+	private String listenerMouseMotionActive;
+	
+	@Value("${artie.sensor.keyboardmouse.listener.mouse-wheel.active}")
+	private String listenerMouseWheelActive;
+	
+	
 	//Listeners
 	@Autowired
 	private KeyboardListener keyboardListener;
@@ -88,13 +109,13 @@ public class KeyboardMouseSensor extends ArtieClientSensorImpl{
 		this.SensorInformation();
 		
 		//Instantiate the configuration
-		this.configuration.putIfAbsent(ConfigurationEnum.KEYBOARD_LISTENER_ACTIVE.toString(), "true");
-		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString(), "true");
-		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_MOTION_LISTENER_ACTIVE.toString(), "true");
-		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), "true");
+		this.configuration.putIfAbsent(ConfigurationEnum.KEYBOARD_LISTENER_ACTIVE.toString(), this.listenerKeyboardActive);
+		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_LISTENER_ACTIVE.toString(), this.listenerMouseActive);
+		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_MOTION_LISTENER_ACTIVE.toString(), this.listenerMouseMotionActive);
+		this.configuration.putIfAbsent(ConfigurationEnum.MOUSE_WHEEL_LISTENER_ACTIVE.toString(), this.listenerMouseWheelActive);
 		
 		//Replacing the already existing configuration
-	 	this.configuration.replace(artie.sensor.common.enums.ConfigurationEnum.SENSOR_FILE_FILENAME.toString(), "KeyboardMouseSensor.log");
+	 	this.configuration.replace(artie.sensor.common.enums.ConfigurationEnum.SENSOR_FILE_FILENAME.toString(), this.fileName);
 	}
 	
 	
