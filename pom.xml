@@ -27,10 +27,15 @@
           <releases><enabled>true</enabled></releases>
           <snapshots><enabled>true</enabled></snapshots>
         </repository>
+        <repository>
+      		<id>artie-snapshots</id>
+      		<name>ARTIE repository</name>
+      		<url>http://nexus.ai-mind.com:8081/nexus/content/repositories/snapshots</url>
+    	</repository>
     	<repository>
-      		<id>github</id>
-      		<name>ARTIEROCKS Github repository</name>
-      		<url>https://maven.pkg.github.com/ARTIEROCKS</url>
+      		<id>artie-releases</id>
+      		<name>ARTIE repository</name>
+      		<url>http://nexus.ai-mind.com:8081/nexus/content/repositories/releases</url>
     	</repository>
   	</repositories>
 
@@ -64,12 +69,17 @@
 	</dependencies>
 	
 	<distributionManagement>
-   		<repository>
-     		<id>github</id>
-     		<name>GitHub ARTIEROCKS Apache Maven Packages</name>
-     		<url>https://maven.pkg.github.com/ARTIEROCKS/ARTIESensor_KeyboardMouse</url>
-   		</repository>
-	</distributionManagement>
+    <repository>
+        <id>release</id>
+        <name>ARTIE internal repository</name>
+        <url>http://nexus.ai-mind.com:8081/nexus/content/repositories/releases/</url>
+    </repository>  
+    <snapshotRepository>
+        <id>snapshot</id>
+        <name>ARTIE internal repository</name>
+        <url>http://nexus.ai-mind.com:8081/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 	<build>
 		<plugins>
