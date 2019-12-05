@@ -18,6 +18,7 @@
 		<java.version>1.8</java.version>
 		<artie.sensor.common.version>0.0.2-SNAPSHOT</artie.sensor.common.version>
 		<jnativehook.version>2.0.3</jnativehook.version>
+		<start-class>artie.sensor.keyboardmouse.KeyboardmouseApplication</start-class>
 	</properties>
 
 	<repositories>
@@ -82,10 +83,38 @@
   </distributionManagement>
 
 	<build>
+		<resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+            	<groupId>org.springframework.boot</groupId>
+            	<artifactId>spring-boot-maven-plugin</artifactId>
+        		<configuration>
+            		<classifier>exec</classifier>
+           		 </configuration>
+       	 	</plugin>
+       	 	
+       	 	<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-assembly-plugin</artifactId>
+			    <configuration>
+			        <descriptorRefs>
+			            <descriptorRef>jar-with-dependencies</descriptorRef>
+			        </descriptorRefs>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>make-assembly</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>single</goal>
+			            </goals>
+			        </execution>
+			    </executions>
 			</plugin>
 		</plugins>
 	</build>
