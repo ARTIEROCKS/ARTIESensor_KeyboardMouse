@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import artie.sensor.common.dto.SensorObject;
+import artie.sensor.common.interfaces.ArtieClientSensor;
 import artie.sensor.keyboardmouse.services.KeyboardMouseSensorService;
 
 @Controller
-public class KeyboardMouseController {
+public class KeyboardMouseController implements ArtieClientSensor {
 	
 	@Autowired
 	private KeyboardMouseSensorService keyboardSensorService;
