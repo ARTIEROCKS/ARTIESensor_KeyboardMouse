@@ -1,10 +1,13 @@
 package artie.sensor.keyboardmouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import artie.sensor.common.dto.SensorObject;
@@ -32,6 +35,17 @@ public class KeyboardMouseController {
 	@ResponseBody
 	public String getAuthor(){
 		return this.keyboardSensorService.getAuthor();
+	}
+	
+	@GetMapping("/artie/sensor/keyboardmouse/getConfiguration")
+	@ResponseBody
+	public Map<String, String> getConfiguration(){
+		return this.keyboardSensorService.getConfiguration();
+	}
+	
+	@PostMapping(path = "/members", consumes = "application/json")
+	public void setConfiguration(@RequestBody Map<String, String> configuration){
+		this.keyboardSensorService.setConfiguration(configuration);
 	}
 
 	@GetMapping("/artie/sensor/keyboardmouse/start")
