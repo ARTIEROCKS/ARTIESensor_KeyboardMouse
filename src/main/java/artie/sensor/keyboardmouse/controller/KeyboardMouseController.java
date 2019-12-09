@@ -44,7 +44,7 @@ public class KeyboardMouseController implements ArtieClientSensor {
 		return this.keyboardSensorService.getConfiguration();
 	}
 	
-	@PostMapping(path = "/members", consumes = "application/json")
+	@PostMapping(path = "/artie/sensor/keyboardmouse/configuration", consumes = "application/json")
 	public void setConfiguration(@RequestBody Map<String, String> configuration){
 		this.keyboardSensorService.setConfiguration(configuration);
 	}
