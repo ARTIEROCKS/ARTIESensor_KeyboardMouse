@@ -66,4 +66,11 @@ public class KeyboardMouseController implements ArtieClientSensor {
 	public List<SensorObject> getSensorData(){
 		return this.keyboardSensorService.getSensorData();
 	}
+	
+	
+	@GetMapping("/artie/sensor/keyboardmouse/sendSensorData")
+	@ResponseBody
+	public void sendSensorData(){
+		this.keyboardSensorService.sendSensorData();
+	}
 }
