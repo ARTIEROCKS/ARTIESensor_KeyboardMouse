@@ -31,14 +31,14 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 	@Override
 	public void nativeMouseMoved(NativeMouseEvent nme) {
 		Object data = new MouseMotionEvent(EventEnum.MOUSE_MOVED.toString(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseMotionEvents.add(sensorObject);
 	}
 
 	@Override
 	public void nativeMouseDragged(NativeMouseEvent nme) {
 		Object data = new MouseMotionEvent(EventEnum.MOUSE_DRAGGED.toString(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseMotionEvents.add(sensorObject);
 	}
 	

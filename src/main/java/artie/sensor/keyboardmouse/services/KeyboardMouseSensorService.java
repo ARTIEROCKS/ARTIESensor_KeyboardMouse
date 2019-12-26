@@ -38,6 +38,15 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 	@Value("${artie.sensor.keyboardmouse.listener.mouse-wheel.active}")
 	private String listenerMouseWheelActive;
 	
+	@Value("${artie.sensor.keyboardmouse.name}")
+	private String paramName;
+	
+	@Value("${artie.sensor.keyboardmouse.version}")
+	private String paramVersion;
+	
+	@Value("${artie.sensor.keyboardmouse.author}")
+	private String paramAuthor;
+	
 	
 	//Listeners
 	@Autowired
@@ -58,9 +67,9 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 	 * About the sensor information
 	 */
 	private void sensorInformation(){
-		this.name = "Keyboard and Mouse Sensor";
-		this.version = "0.0.2";
-		this.author = "Luis-Eduardo Imbernón";
+		this.name = this.paramName;
+		this.version = this.paramVersion;
+		this.author = this.paramVersion;
 	}
 	
 	/**

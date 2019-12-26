@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import artie.sensor.common.dto.SensorObject;
@@ -45,7 +46,8 @@ public class KeyboardMouseController implements ArtieClientSensor {
 	}
 	
 	@PostMapping(path = "/artie/sensor/keyboardmouse/configuration", consumes = "application/json")
-	public void setConfiguration(@RequestBody Map<String, String> configuration){
+	@ResponseBody
+	public void setConfiguration(@RequestParam Map<String, String> configuration){
 		this.keyboardSensorService.setConfiguration(configuration);
 	}
 
@@ -66,7 +68,6 @@ public class KeyboardMouseController implements ArtieClientSensor {
 	public List<SensorObject> getSensorData(){
 		return this.keyboardSensorService.getSensorData();
 	}
-	
 	
 	@GetMapping("/artie/sensor/keyboardmouse/sendSensorData")
 	@ResponseBody

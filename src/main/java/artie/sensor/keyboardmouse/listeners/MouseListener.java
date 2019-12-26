@@ -32,21 +32,21 @@ public class MouseListener implements NativeMouseListener {
 	@Override
 	public void nativeMouseClicked(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseEvents.add(sensorObject);
 	}
 
 	@Override
 	public void nativeMousePressed(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseEvents.add(sensorObject);
 	}
 
 	@Override
 	public void nativeMouseReleased(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseEvents.add(sensorObject);
 	}
 

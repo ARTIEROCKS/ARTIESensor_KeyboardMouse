@@ -31,14 +31,14 @@ public class KeyboardListener implements NativeKeyListener {
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent nke) {
 		Object data = new KeyboardEvent(EventEnum.KEY_PRESSED.toString(), nke.getKeyCode());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.keyboardEvents.add(sensorObject);
 	}
 
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent nke) {
 		Object data = new KeyboardEvent(EventEnum.KEY_RELEASED.toString(), nke.getKeyCode());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.keyboardEvents.add(sensorObject);
 	}
 
