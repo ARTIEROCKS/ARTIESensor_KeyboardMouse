@@ -61,7 +61,8 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 	private boolean keyboardListenerIsActive = false;
 	private boolean mouseListenerIsActive = false;
 	private boolean mouseMotionListenerIsActive = false;
-	private boolean mouseWheelListenerIsActive = false;
+	private boolean mouseWheelListenerIsActive = false;	
+	
 	
 	/**
 	 * About the sensor information
