@@ -24,6 +24,9 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 	public List<SensorObject> getMouseWheelEvents() {
 		return mouseWheelEvents;
 	}
+	public SensorObject getMouseWheelEvent(int element) {
+		return this.mouseWheelEvents.get(element);
+	}
 	public void setMouseWheelEvents(List<SensorObject> mouseWheelEvents) {
 		this.mouseWheelEvents = mouseWheelEvents;
 	}

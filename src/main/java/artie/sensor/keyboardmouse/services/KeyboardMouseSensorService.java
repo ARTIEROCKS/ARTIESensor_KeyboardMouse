@@ -1,5 +1,6 @@
 package artie.sensor.keyboardmouse.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -84,23 +85,43 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 		
 		//Getting the information from the keyboard listener
 		if(keyboardListenerIsActive){
-			this.keyboardListener.getKeyboardEvents().forEach(event->this.addSensorObject(event));
+			
+			int elements = this.keyboardListener.getKeyboardEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.keyboardListener.getKeyboardEvent(i));
+			}
+			
 			this.keyboardListener.clearEvents();
 		}
 		//Getting the information from the mouse listener
 		if(mouseListenerIsActive){
-			this.mouseListener.getMouseEvents().forEach(event->this.addSensorObject(event));
+			
+			int elements = this.mouseListener.getMouseEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.mouseListener.getMouseEvent(i));
+			}
+			
 			this.mouseListener.clearEvents();
 		}
 		//Getting the information from the mouse motion listener
 		if(mouseMotionListenerIsActive){
-			this.mouseMotionListener.getMouseMotionEvents().forEach(event->this.addSensorObject(event));
+			
+			int elements = this.mouseMotionListener.getMouseMotionEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.mouseMotionListener.getMouseMotionEvent(i));
+			}
+			
 			this.mouseMotionListener.clearEvents();
 		}
 		//Getting the information from the mouse wheel listener
 		if(mouseWheelListenerIsActive){
-			this.mouseWheelListener.getMouseWheelEvents().forEach(event->this.addSensorObject(event));
-			this.mouseMotionListener.clearEvents();
+			
+			int elements = this.mouseWheelListener.getMouseWheelEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.mouseWheelListener.getMouseWheelEvent(i));
+			}
+			
+			this.mouseWheelListener.clearEvents();
 		}
 		
 		//If we want to write a JSON file with the data

@@ -24,6 +24,9 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 	public List<SensorObject> getMouseMotionEvents() {
 		return mouseMotionEvents;
 	}
+	public SensorObject getMouseMotionEvent(int element) {
+		return this.mouseMotionEvents.get(element);
+	}
 	public void setMouseMotionEvents(List<SensorObject> mouseMotionEvents) {
 		this.mouseMotionEvents = mouseMotionEvents;
 	}

@@ -24,6 +24,9 @@ public class KeyboardListener implements NativeKeyListener {
 	public List<SensorObject> getKeyboardEvents(){
 		return this.keyboardEvents;
 	}
+	public SensorObject getKeyboardEvent(int element){
+		return this.keyboardEvents.get(element);
+	}
 	public void setKeyboardEvents(List<SensorObject> keyboardEvents){
 		this.keyboardEvents = keyboardEvents;
 	}
