@@ -1,6 +1,5 @@
 package artie.sensor.keyboardmouse.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
