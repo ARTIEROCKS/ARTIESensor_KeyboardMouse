@@ -24,6 +24,9 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 	public List<SensorObject> getMouseWheelEvents() {
 		return mouseWheelEvents;
 	}
+	public SensorObject getMouseWheelEvent(int element) {
+		return this.mouseWheelEvents.get(element);
+	}
 	public void setMouseWheelEvents(List<SensorObject> mouseWheelEvents) {
 		this.mouseWheelEvents = mouseWheelEvents;
 	}
@@ -31,7 +34,7 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 	@Override
 	public void nativeMouseWheelMoved(NativeMouseWheelEvent nmwe) {
 		Object data = new MouseWheelEvent(EventEnum.MOUSE_WHEEL.toString(), nmwe.getScrollAmount(), nmwe.getWheelRotation(), nmwe.getScrollType());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseWheelEvents.add(sensorObject);
 	}
 	

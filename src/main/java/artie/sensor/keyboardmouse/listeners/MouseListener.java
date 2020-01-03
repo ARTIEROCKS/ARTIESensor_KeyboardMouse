@@ -24,6 +24,9 @@ public class MouseListener implements NativeMouseListener {
 	public List<SensorObject> getMouseEvents() {
 		return mouseEvents;
 	}
+	public SensorObject getMouseEvent(int element) {
+		return this.mouseEvents.get(element);
+	}
 	public void setMouseEvents(List<SensorObject> mouseEvents) {
 		this.mouseEvents = mouseEvents;
 	}
@@ -32,21 +35,21 @@ public class MouseListener implements NativeMouseListener {
 	@Override
 	public void nativeMouseClicked(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseEvents.add(sensorObject);
 	}
 
 	@Override
 	public void nativeMousePressed(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseEvents.add(sensorObject);
 	}
 
 	@Override
 	public void nativeMouseReleased(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
-		SensorObject sensorObject = new SensorObject(new Date(), data);
+		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
 		this.mouseEvents.add(sensorObject);
 	}
 

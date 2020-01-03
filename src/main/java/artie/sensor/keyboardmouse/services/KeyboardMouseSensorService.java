@@ -38,6 +38,15 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 	@Value("${artie.sensor.keyboardmouse.listener.mouse-wheel.active}")
 	private String listenerMouseWheelActive;
 	
+	@Value("${artie.sensor.keyboardmouse.name}")
+	private String paramName;
+	
+	@Value("${artie.sensor.keyboardmouse.version}")
+	private String paramVersion;
+	
+	@Value("${artie.sensor.keyboardmouse.author}")
+	private String paramAuthor;
+	
 	
 	//Listeners
 	@Autowired
@@ -52,15 +61,16 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 	private boolean keyboardListenerIsActive = false;
 	private boolean mouseListenerIsActive = false;
 	private boolean mouseMotionListenerIsActive = false;
-	private boolean mouseWheelListenerIsActive = false;
+	private boolean mouseWheelListenerIsActive = false;	
+	
 	
 	/**
 	 * About the sensor information
 	 */
 	private void sensorInformation(){
-		this.name = "Keyboard and Mouse Sensor";
-		this.version = "0.0.2";
-		this.author = "Luis-Eduardo Imbernón";
+		this.name = this.paramName;
+		this.version = this.paramVersion;
+		this.author = this.paramVersion;
 	}
 	
 	/**
@@ -74,23 +84,43 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 		
 		//Getting the information from the keyboard listener
 		if(keyboardListenerIsActive){
-			this.keyboardListener.getKeyboardEvents().forEach(event->this.addSensorObject(event));
+			
+			int elements = this.keyboardListener.getKeyboardEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.keyboardListener.getKeyboardEvent(i));
+			}
+			
 			this.keyboardListener.clearEvents();
 		}
 		//Getting the information from the mouse listener
 		if(mouseListenerIsActive){
-			this.mouseListener.getMouseEvents().forEach(event->this.addSensorObject(event));
+			
+			int elements = this.mouseListener.getMouseEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.mouseListener.getMouseEvent(i));
+			}
+			
 			this.mouseListener.clearEvents();
 		}
 		//Getting the information from the mouse motion listener
 		if(mouseMotionListenerIsActive){
-			this.mouseMotionListener.getMouseMotionEvents().forEach(event->this.addSensorObject(event));
+			
+			int elements = this.mouseMotionListener.getMouseMotionEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.mouseMotionListener.getMouseMotionEvent(i));
+			}
+			
 			this.mouseMotionListener.clearEvents();
 		}
 		//Getting the information from the mouse wheel listener
 		if(mouseWheelListenerIsActive){
-			this.mouseWheelListener.getMouseWheelEvents().forEach(event->this.addSensorObject(event));
-			this.mouseMotionListener.clearEvents();
+			
+			int elements = this.mouseWheelListener.getMouseWheelEvents().size();
+			for(int i=0; i<elements; i++) {
+				this.addSensorObject(this.mouseWheelListener.getMouseWheelEvent(i));
+			}
+			
+			this.mouseWheelListener.clearEvents();
 		}
 		
 		//If we want to write a JSON file with the data
