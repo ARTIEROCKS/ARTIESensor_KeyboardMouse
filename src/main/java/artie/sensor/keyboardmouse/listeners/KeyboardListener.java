@@ -8,6 +8,8 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import artie.sensor.common.dto.SensorObject;
@@ -19,6 +21,7 @@ public class KeyboardListener implements NativeKeyListener {
 	
 	//Attributes
 	private List<SensorObject> keyboardEvents = new ArrayList<SensorObject>();
+	private Logger logger = LoggerFactory.getLogger(KeyboardListener.class);
 
 	//Properties
 	public List<SensorObject> getKeyboardEvents(){
@@ -61,6 +64,7 @@ public class KeyboardListener implements NativeKeyListener {
         }catch(NativeHookException ex){
             System.err.println("There was a problem registering the native hook.");
             System.err.println(ex.getMessage());
+            this.logger.error(ex.getMessage());
         }
     }
     
@@ -75,6 +79,7 @@ public class KeyboardListener implements NativeKeyListener {
         }catch(NativeHookException ex){
             System.err.println("There was a problem unregistering the native hook.");
             System.err.println(ex.getMessage());
+            this.logger.error(ex.getMessage());
         }
     }
     

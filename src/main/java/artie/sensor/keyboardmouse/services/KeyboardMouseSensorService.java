@@ -64,6 +64,7 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 	private boolean mouseWheelListenerIsActive = false;	
 	
 	
+	
 	/**
 	 * About the sensor information
 	 */
@@ -147,6 +148,8 @@ public class KeyboardMouseSensorService extends ArtieClientSensorImpl{
 		
 		//Replacing the already existing configuration
 	 	this.configuration.replace(artie.sensor.common.enums.ConfigurationEnum.SENSOR_FILE_FILENAME.toString(), this.fileName);
+	 	
+	 	this.isAlive = true;
 	}
 	
 	

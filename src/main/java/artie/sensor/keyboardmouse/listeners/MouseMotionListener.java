@@ -8,6 +8,8 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseMotionListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import artie.sensor.common.dto.SensorObject;
@@ -19,6 +21,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 	
 	//Attributes
 	private List<SensorObject> mouseMotionEvents = new ArrayList<SensorObject>();
+	private Logger logger = LoggerFactory.getLogger(MouseMotionListener.class);
 	
 	//Properties
 	public List<SensorObject> getMouseMotionEvents() {
@@ -55,6 +58,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
         }catch(NativeHookException ex){
             System.err.println("There was a problem registering the native hook.");
             System.err.println(ex.getMessage());
+            this.logger.error(ex.getMessage());
         }
     }
     
@@ -68,6 +72,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
         }catch(NativeHookException ex){
             System.err.println("There was a problem unregistering the native hook.");
             System.err.println(ex.getMessage());
+            this.logger.error(ex.getMessage());
         }   
     }
     
