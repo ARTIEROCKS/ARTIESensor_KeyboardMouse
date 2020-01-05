@@ -38,6 +38,12 @@ public class KeyboardMouseController implements ArtieClientSensor {
 		return this.keyboardSensorService.getAuthor();
 	}
 	
+	@GetMapping("/artie/sensor/keyboardmouse/isAlive")
+	@ResponseBody
+	public boolean getIsAlive() {
+		return this.keyboardSensorService.getIsAlive();
+	}
+	
 	@GetMapping("/artie/sensor/keyboardmouse/getConfiguration")
 	@ResponseBody
 	public Map<String, String> getConfiguration(){
