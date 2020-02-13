@@ -46,6 +46,7 @@ public class KeyboardListener implements NativeKeyListener {
 			this.keyboardEvents.remove(0);
 		}
 		this.keyboardEvents.add(sensorObject);
+		System.out.println("keyboardEvents: " + this.keyboardEvents.size());
 	}
 
 	@Override
@@ -56,11 +57,12 @@ public class KeyboardListener implements NativeKeyListener {
 			this.keyboardEvents.remove(0);
 		}
 		this.keyboardEvents.add(sensorObject);
+		System.out.println("keyboardEvents: " + this.keyboardEvents.size());
 	}
 
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent nke) {
-		//Key Typed and key pressed and released are more or less the same		
+		//Key Typed and key pressed and released are more or less the same		sahud
 	}
 	
 	/**

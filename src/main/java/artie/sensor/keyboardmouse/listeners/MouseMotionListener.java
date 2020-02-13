@@ -46,6 +46,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 			this.mouseMotionEvents.remove(0);
 		}
 		this.mouseMotionEvents.add(sensorObject);
+		System.out.println("mouseMotionEvents: " + this.mouseMotionEvents.size());
 	}
 
 	@Override
@@ -56,6 +57,7 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 			this.mouseMotionEvents.remove(0);
 		}
 		this.mouseMotionEvents.add(sensorObject);
+		System.out.println("mouseMotionEvents: " + this.mouseMotionEvents.size());
 	}
 	
 	/**

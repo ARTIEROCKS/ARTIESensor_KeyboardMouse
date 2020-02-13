@@ -47,6 +47,7 @@ public class MouseListener implements NativeMouseListener {
 			this.mouseEvents.remove(0);
 		}
 		this.mouseEvents.add(sensorObject);
+		System.out.println("mouseEvents: " + this.mouseEvents.size());
 	}
 
 	@Override
@@ -57,6 +58,7 @@ public class MouseListener implements NativeMouseListener {
 			this.mouseEvents.remove(0);
 		}
 		this.mouseEvents.add(sensorObject);
+		System.out.println("mouseEvents: " + this.mouseEvents.size());
 	}
 
 	@Override
@@ -67,6 +69,7 @@ public class MouseListener implements NativeMouseListener {
 			this.mouseEvents.remove(0);
 		}
 		this.mouseEvents.add(sensorObject);
+		System.out.println("mouseEvents: " + this.mouseEvents.size());
 	}
 
 	/**

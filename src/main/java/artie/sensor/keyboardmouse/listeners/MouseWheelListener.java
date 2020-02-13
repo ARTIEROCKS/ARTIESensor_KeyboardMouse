@@ -46,6 +46,7 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 			this.mouseWheelEvents.remove(0);
 		}
 		this.mouseWheelEvents.add(sensorObject);
+		System.out.println("mouseWheelEvents: " + this.mouseWheelEvents.size());
 	}
 	
 	
