@@ -10,6 +10,7 @@ import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseMotionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import artie.sensor.common.dto.SensorObject;
@@ -22,6 +23,9 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 	//Attributes
 	private List<SensorObject> mouseMotionEvents = new ArrayList<SensorObject>();
 	private Logger logger = LoggerFactory.getLogger(MouseMotionListener.class);
+	
+	@Value("${artie.sensor.keyboardmouse.listener.datalimit}")
+	private long dataLimit;
 	
 	//Properties
 	public List<SensorObject> getMouseMotionEvents() {
@@ -38,14 +42,22 @@ public class MouseMotionListener implements NativeMouseMotionListener {
 	public void nativeMouseMoved(NativeMouseEvent nme) {
 		Object data = new MouseMotionEvent(EventEnum.MOUSE_MOVED.toString(), nme.getX(), nme.getY());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.mouseMotionEvents.size() >= dataLimit) {
+			this.mouseMotionEvents.remove(0);
+		}
 		this.mouseMotionEvents.add(sensorObject);
+		System.out.println("mouseMotionEvents: " + this.mouseMotionEvents.size());
 	}
 
 	@Override
 	public void nativeMouseDragged(NativeMouseEvent nme) {
 		Object data = new MouseMotionEvent(EventEnum.MOUSE_DRAGGED.toString(), nme.getX(), nme.getY());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.mouseMotionEvents.size() >= dataLimit) {
+			this.mouseMotionEvents.remove(0);
+		}
 		this.mouseMotionEvents.add(sensorObject);
+		System.out.println("mouseMotionEvents: " + this.mouseMotionEvents.size());
 	}
 	
 	/**

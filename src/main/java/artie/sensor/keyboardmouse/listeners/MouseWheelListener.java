@@ -10,6 +10,7 @@ import org.jnativehook.mouse.NativeMouseWheelEvent;
 import org.jnativehook.mouse.NativeMouseWheelListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import artie.sensor.common.dto.SensorObject;
@@ -22,6 +23,9 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 	//Attributes
 	private List<SensorObject> mouseWheelEvents = new ArrayList<SensorObject>();
 	private Logger logger = LoggerFactory.getLogger(MouseWheelListener.class);
+	
+	@Value("${artie.sensor.keyboardmouse.listener.datalimit}")
+	private long dataLimit;
 	
 	//Properties
 	public List<SensorObject> getMouseWheelEvents() {
@@ -38,7 +42,11 @@ public class MouseWheelListener implements NativeMouseWheelListener {
 	public void nativeMouseWheelMoved(NativeMouseWheelEvent nmwe) {
 		Object data = new MouseWheelEvent(EventEnum.MOUSE_WHEEL.toString(), nmwe.getScrollAmount(), nmwe.getWheelRotation(), nmwe.getScrollType());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.mouseWheelEvents.size() >= dataLimit) {
+			this.mouseWheelEvents.remove(0);
+		}
 		this.mouseWheelEvents.add(sensorObject);
+		System.out.println("mouseWheelEvents: " + this.mouseWheelEvents.size());
 	}
 	
 	

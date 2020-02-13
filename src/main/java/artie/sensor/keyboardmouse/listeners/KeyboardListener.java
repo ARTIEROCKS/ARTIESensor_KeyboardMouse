@@ -10,6 +10,7 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import artie.sensor.common.dto.SensorObject;
@@ -22,6 +23,9 @@ public class KeyboardListener implements NativeKeyListener {
 	//Attributes
 	private List<SensorObject> keyboardEvents = new ArrayList<SensorObject>();
 	private Logger logger = LoggerFactory.getLogger(KeyboardListener.class);
+	
+	@Value("${artie.sensor.keyboardmouse.listener.datalimit}")
+	private long dataLimit;
 
 	//Properties
 	public List<SensorObject> getKeyboardEvents(){
@@ -38,19 +42,27 @@ public class KeyboardListener implements NativeKeyListener {
 	public void nativeKeyPressed(NativeKeyEvent nke) {
 		Object data = new KeyboardEvent(EventEnum.KEY_PRESSED.toString(), nke.getKeyCode());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.keyboardEvents.size() >= dataLimit) {
+			this.keyboardEvents.remove(0);
+		}
 		this.keyboardEvents.add(sensorObject);
+		System.out.println("keyboardEvents: " + this.keyboardEvents.size());
 	}
 
 	@Override
 	public void nativeKeyReleased(NativeKeyEvent nke) {
 		Object data = new KeyboardEvent(EventEnum.KEY_RELEASED.toString(), nke.getKeyCode());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.keyboardEvents.size() >= dataLimit) {
+			this.keyboardEvents.remove(0);
+		}
 		this.keyboardEvents.add(sensorObject);
+		System.out.println("keyboardEvents: " + this.keyboardEvents.size());
 	}
 
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent nke) {
-		//Key Typed and key pressed and released are more or less the same		
+		//Key Typed and key pressed and released are more or less the same		sahud
 	}
 	
 	/**

@@ -10,6 +10,7 @@ import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import artie.sensor.common.dto.SensorObject;
@@ -22,6 +23,9 @@ public class MouseListener implements NativeMouseListener {
 	//Attributes
 	private List<SensorObject> mouseEvents = new ArrayList<SensorObject>();
 	private Logger logger = LoggerFactory.getLogger(MouseListener.class);
+	
+	@Value("${artie.sensor.keyboardmouse.listener.datalimit}")
+	private long dataLimit;
 
 	//Properties
 	public List<SensorObject> getMouseEvents() {
@@ -39,21 +43,33 @@ public class MouseListener implements NativeMouseListener {
 	public void nativeMouseClicked(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.mouseEvents.size() >= dataLimit) {
+			this.mouseEvents.remove(0);
+		}
 		this.mouseEvents.add(sensorObject);
+		System.out.println("mouseEvents: " + this.mouseEvents.size());
 	}
 
 	@Override
 	public void nativeMousePressed(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.mouseEvents.size() >= dataLimit) {
+			this.mouseEvents.remove(0);
+		}
 		this.mouseEvents.add(sensorObject);
+		System.out.println("mouseEvents: " + this.mouseEvents.size());
 	}
 
 	@Override
 	public void nativeMouseReleased(NativeMouseEvent nme) {
 		Object data = new MouseEvent(EventEnum.KEY_PRESSED.toString(), nme.getButton(), nme.getClickCount(), nme.getX(), nme.getY());
 		SensorObject sensorObject = new SensorObject(new Date(), data, "keyboardmouse");
+		if(this.mouseEvents.size() >= dataLimit) {
+			this.mouseEvents.remove(0);
+		}
 		this.mouseEvents.add(sensorObject);
+		System.out.println("mouseEvents: " + this.mouseEvents.size());
 	}
 
 	/**
